@@ -1,5 +1,19 @@
 import m from "mithril"
+import UserList from "./views/UserList"
+import UserForm from "./views/UserForm"
+import Layout from "./views/Layout"
 
-const root = document.body
+console.log(UserList)
 
-m.render(root, <p>Hello world</p>)
+m.route(document.body, "/list", {
+    "/list": {
+        render: function() {
+            return <Layout><UserList /></Layout>
+        }
+    },
+    "/edit/:id": {
+        render: function(vnode) {
+            return <Layout><UserForm id={vnode.attrs.id} /></Layout>
+        }
+    },
+})
